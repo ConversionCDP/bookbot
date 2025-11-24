@@ -3,7 +3,7 @@ def countWords(filePath):
         fileContents = f.read()
         words = fileContents.split()
         totalWords = len(words)
-        print(f"Found {totalWords} total words")
+        return totalWords
 
 def characterCount(filePath):
     with open(filePath) as f:
@@ -17,13 +17,15 @@ def characterCount(filePath):
         return(characters)
     
 def sortList(dictionary):
-    dictSort = sorted(dictionary.items(), key=lambda item: item[1], reverse=True)
-    '''for item in dictSort:
-        if str(item).isalpha() == False:
-            remove dictSort[item]'''
-    
-    #take the values out of the dictionary and sort them in a separate list. Then we need to create a tuple where we take the sorted value and search through the original dictionary for the value to pull the letter. Then put the letter and value in the output from the tupled list. Big Brain
-    print(dictSort)
+    numList = []
+    for item in dictionary:
+        newDict = {}
+        newDict["char"] = item
+        newDict["value"] = dictionary[item]
+        numList.append(newDict) 
+    numList.sort(reverse=True, key=pullNum)
+    return numList
 
-characterCount("books/frankenstein.txt")
+def pullNum(numList):
+    return numList['value']
 
