@@ -1,4 +1,5 @@
 from stats import countWords, characterCount, sortList
+import sys
 
 def get_book_text(filePath):
     with open(filePath) as f:
@@ -7,8 +8,13 @@ def get_book_text(filePath):
 
 def main():
     #get_book_text("books/frankenstein.txt")
-    totalWords = countWords("books/frankenstein.txt")
-    characters = characterCount("books/frankenstein.txt")
+    if len(sys.argv) > 1:
+        filePath = sys.argv[1]
+    else:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    totalWords = countWords(filePath)
+    characters = characterCount(filePath)
     numList = sortList(characters)
     first = (f"============ BOOKBOT ============\nAnalyzing book found at books/frankenstein.txt...\n----------- Word Count ----------\nFound {totalWords} total words\n--------- Character Count -------\n")
     charList = []
